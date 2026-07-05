@@ -28,6 +28,7 @@
     font-weight:400;
     line-height:1.5;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
   a{color:inherit;}
   .mono{font-family:'IBM Plex Mono', monospace;}
@@ -49,8 +50,9 @@
     background:rgba(237,230,214,0.9);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
+    gap:12px;
   }
-  .logo{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:15px; letter-spacing:0.02em;}
+  .logo{font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:15px; letter-spacing:0.02em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
   .logo span{color:var(--brick);}
   nav{display:flex; gap:28px; align-items:center;}
   nav a{
@@ -59,7 +61,7 @@
   }
   nav a:hover{opacity:1;}
   .btn{
-    display:inline-flex; align-items:center; gap:8px;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
     padding:11px 20px;
     background:var(--ink); color:var(--paper-light);
     text-decoration:none;
@@ -90,8 +92,8 @@
     display:grid; grid-template-columns:1.2fr 0.8fr; gap:60px; align-items:end;
   }
   h1.hero-title{
-    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(38px, 5.4vw, 74px);
-    line-height:1.03; margin:0 0 24px; letter-spacing:-0.01em;
+    font-family:'Fraunces', serif; font-weight:600; font-size:clamp(34px, 5.4vw, 74px);
+    line-height:1.05; margin:0 0 24px; letter-spacing:-0.01em;
   }
   h1.hero-title em{font-style:italic; font-weight:500; color:var(--brick);}
   .hero-sub{
@@ -122,15 +124,16 @@
   .chart-panel .cap{
     display:flex; justify-content:space-between; font-family:'IBM Plex Mono', monospace;
     font-size:11px; text-transform:uppercase; letter-spacing:0.06em; color:var(--green); margin-bottom:14px;
+    gap:8px;
   }
   .chart-panel svg{width:100%; height:auto; display:block;}
   .chart-legend{display:flex; justify-content:space-between; margin-top:10px; font-family:'IBM Plex Mono', monospace; font-size:11px; opacity:0.7;}
 
   /* ---------- chapter label ---------- */
   .chapter{padding:110px 5vw 40px;}
-  .chapter-head{display:flex; align-items:baseline; gap:18px; margin-bottom:14px;}
+  .chapter-head{display:flex; align-items:baseline; gap:18px; margin-bottom:14px; flex-wrap:wrap;}
   .chapter-num{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--brick); letter-spacing:0.08em;}
-  .chapter-title{font-family:'Fraunces', serif; font-size:clamp(28px,3.4vw,42px); font-weight:600; margin:0;}
+  .chapter-title{font-family:'Fraunces', serif; font-size:clamp(26px,3.4vw,42px); font-weight:600; margin:0;}
   .chapter-rule{height:1px; background:var(--line-strong); margin:26px 0 46px;}
   .chapter-intro{max-width:60ch; opacity:0.85; margin-bottom:10px;}
 
@@ -184,7 +187,7 @@
     padding:24px 0; border-top:1px solid var(--line);
   }
   .group-row:last-child{border-bottom:1px solid var(--line);}
-  .group-left{display:flex; align-items:center; gap:20px;}
+  .group-left{display:flex; align-items:center; gap:20px; min-width:0;}
   .group-icon{
     width:52px; height:52px; border-radius:50%; border:1px solid var(--line-strong);
     display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono', monospace; font-size:13px; flex-shrink:0;
@@ -203,14 +206,14 @@
     display:flex; flex-direction:column; gap:16px; position:relative;
   }
   .quote p{font-family:'Fraunces', serif; font-style:italic; font-size:17px; margin:0; line-height:1.5;}
-  .quote .who{font-family:'IBM Plex Mono', monospace; font-size:12px; opacity:0.7; display:flex; justify-content:space-between;}
+  .quote .who{font-family:'IBM Plex Mono', monospace; font-size:12px; opacity:0.7; display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap;}
 
   /* ---------- contato ---------- */
   .contact-band{
     margin:0 5vw 0; padding:70px 6vw; background:var(--ink); color:var(--paper-light);
     display:flex; justify-content:space-between; align-items:center; gap:40px; flex-wrap:wrap;
   }
-  .contact-band h2{font-family:'Fraunces', serif; font-size:clamp(28px,3.6vw,46px); margin:0 0 10px; max-width:16ch;}
+  .contact-band h2{font-family:'Fraunces', serif; font-size:clamp(26px,3.6vw,46px); margin:0 0 10px; max-width:16ch;}
   .contact-band p{opacity:0.75; max-width:40ch; margin:0 0 26px;}
   .contact-links{display:flex; gap:14px; flex-wrap:wrap;}
   .contact-band .btn{background:var(--ochre); border-color:var(--ochre); color:var(--ink);}
@@ -227,6 +230,9 @@
   .reveal{opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease;}
   .reveal.in{opacity:1; transform:translateY(0);}
 
+  /* =========================================================
+     MOBILE / TABLET ADAPTATIONS
+     ========================================================= */
   @media (max-width: 900px){
     .hero-grid{grid-template-columns:1fr;}
     .about-grid{grid-template-columns:1fr;}
@@ -234,18 +240,59 @@
     .grid2{grid-template-columns:1fr;}
     .stats-row{grid-template-columns:1fr 1fr;}
     .stamp{width:100px; height:100px; font-size:9.5px; top:26px; right:24px;}
+    .avatar{max-width:220px; margin:0 auto;}
   }
+
   @media (max-width: 620px){
-    nav{position:fixed; inset:64px 0 auto 0; background:var(--paper); flex-direction:column; align-items:flex-start;
-        padding:20px 24px 26px; border-bottom:1px solid var(--line); gap:18px;
-        transform:translateY(-120%); transition:transform .3s ease;}
+    header{padding:14px 5vw;}
+    .logo{font-size:13px; max-width:60vw;}
+    nav{position:fixed; inset:60px 0 auto 0; background:var(--paper); flex-direction:column; align-items:stretch;
+        padding:18px 6vw 24px; border-bottom:1px solid var(--line); gap:0;
+        transform:translateY(-120%); transition:transform .3s ease; box-shadow:0 12px 24px -18px rgba(0,0,0,0.4);}
     nav.open{transform:translateY(0);}
-    .nav-toggle{display:block; background:none; border:1px solid var(--line-strong); padding:8px 12px; font-family:'IBM Plex Mono',monospace; font-size:12px;}
+    nav a{width:100%; padding:14px 0; border-top:1px solid var(--line); font-size:13px;}
+    nav a:first-child{border-top:none;}
+    nav a.btn{margin-top:12px; border-top:1px solid var(--ink); justify-content:center;}
+    .nav-toggle{display:block; background:none; border:1px solid var(--line-strong); padding:8px 12px; font-family:'IBM Plex Mono',monospace; font-size:11px; flex-shrink:0;}
+
+    .hero{padding:36px 6vw 60px;}
+    .hero-meta{gap:10px; font-size:10.5px; margin-bottom:16px;}
+    .hero-meta span:not(:last-child)::after{margin-left:10px;}
+    .hero-cta{flex-direction:column; align-items:stretch;}
+    .hero-cta .btn{width:100%;}
+    .stamp{position:static; transform:rotate(-6deg); margin:0 0 22px; width:96px; height:96px;}
+
+    .chapter{padding:56px 6vw 24px;}
+    .chapter-rule{margin:18px 0 30px;}
+    .chapter-head{gap:10px;}
+
     .grid3{grid-template-columns:1fr;}
-    .stats-row{grid-template-columns:1fr 1fr;}
-    .contact-band{flex-direction:column; align-items:flex-start;}
-    .chapter{padding:80px 6vw 30px;}
+    .stats-row{grid-template-columns:1fr 1fr; gap:18px; margin-bottom:40px;}
+    .stat .num{font-size:32px;}
+
+    .facts li{grid-template-columns:1fr; gap:4px;}
+
+    .group-row{flex-direction:column; align-items:stretch; gap:14px; padding:20px 0;}
+    .group-left{width:100%;}
+    .group-row .btn{width:100%;}
+
+    .avatar{font-size:44px; max-width:160px;}
+
+    .contact-band{padding:44px 6vw; text-align:left;}
+    .contact-links{flex-direction:column; align-items:stretch; width:100%;}
+    .contact-links .btn{width:100%;}
+
+    footer{flex-direction:column; gap:6px; text-align:left;}
   }
+
+  @media (max-width: 400px){
+    h1.hero-title{font-size:30px;}
+    .hero-sub{font-size:16px;}
+    .chart-panel{padding:16px;}
+    .ticket{padding:20px 18px 18px;}
+    .stats-row{grid-template-columns:1fr 1fr; gap:14px;}
+  }
+
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     .reveal{transition:none; opacity:1; transform:none;}
@@ -255,7 +302,7 @@
 <body>
 
 <header>
-  <div class="logo">Gaúcho <span>Visionário </span></div>
+  <div class="logo">Gaúcho <span>Visionário</span></div>
   <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">MENU ☰</button>
   <nav id="nav">
     <a href="#sobre">Sobre</a>
