@@ -181,6 +181,33 @@
     letter-spacing:0.05em; padding:3px 8px; border:1px solid var(--line-strong); color:var(--green); width:fit-content;
   }
 
+  /* ---------- ticket interativo (clicável) ---------- */
+  .ticket-link{
+    text-decoration:none;
+    cursor:pointer;
+  }
+  .ticket-link .ticket{
+    outline:1px solid transparent;
+  }
+  .ticket-link:hover .ticket,
+  .ticket-link:focus-visible .ticket{
+    transform:translateY(-8px);
+    box-shadow:0 18px 32px -18px rgba(140,63,48,0.55);
+    border-color:var(--brick);
+  }
+  .ticket-link:hover .ticket .price,
+  .ticket-link:focus-visible .ticket .price{
+    color:var(--brick);
+  }
+  .ticket .buy-cta{
+    display:inline-flex; align-items:center; gap:6px;
+    transition:gap .2s ease;
+  }
+  .ticket-link:hover .buy-cta,
+  .ticket-link:focus-visible .buy-cta{
+    gap:10px;
+  }
+
   /* ---------- grupos ---------- */
   .group-row{
     display:flex; align-items:center; justify-content:space-between; gap:24px;
@@ -431,13 +458,15 @@
   <p class="chapter-intro">Templates e materiais prontos para aplicar hoje mesmo. <em style="opacity:.7">(exemplos — substitua pelos seus produtos)</em></p>
   <div class="chapter-rule"></div>
   <div class="grid3 reveal">
-    <div class="ticket">
-      <span class="idx">PRODUTO</span>
-      <h3>PACK DE EBOOKs</h3>
-      <p>4 Ebooks para você que esta começando no Marketing Digital e que fazer uma venda hoje mesmo.</p>
-      <span class="tag">EBOOKs</span>
-      <div class="foot"><span class="price">R$ 47</span><span>Download imediato</span></div>
-    </div>
+    <a class="ticket-link" href="https://bagesystems.github.io/Ebook-1/" target="_blank" rel="noopener" aria-label="Comprar Pack de Ebooks — abrir página de vendas">
+      <div class="ticket">
+        <span class="idx">PRODUTO</span>
+        <h3>PACK DE EBOOKs</h3>
+        <p>4 Ebooks para você que esta começando no Marketing Digital e que fazer uma venda hoje mesmo.</p>
+        <span class="tag">EBOOKs</span>
+        <div class="foot"><span class="price">R$ 47</span><span class="buy-cta">Comprar agora →</span></div>
+      </div>
+    </a>
     <div class="ticket">
       <span class="idx">PRODUTO</span>
       <h3>Template de chatbot para Z-API</h3>
